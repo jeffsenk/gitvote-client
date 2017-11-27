@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import {Button} from 'react-bootstrap';
+import {Redirect} from 'react-router-dom';
 
 export default class NewProposalForm extends React.Component{
   constructor(props){
     super(props);
     this.state={
+      submitted:false,
       title:"",
       description:"",
       criteria:"Majority",
@@ -62,9 +64,9 @@ export default class NewProposalForm extends React.Component{
         if(!res.ok){
           alert('Error Submitting Proposal');
         }else{
-          alert('New Proposal Submitted');
+           this.setState({submitted:true});
         }
-      });
+      }.bind(this));
     }else{
       alert('Please complete Title and Description Fields');
     }
@@ -129,6 +131,12 @@ export default class NewProposalForm extends React.Component{
       padding:'1%',
       height:'20%',
       width:'100%',
+    }
+
+    if(this.state.submitted){
+      return(
+        <Redirect to='/main/proposals'/>
+      );
     }
     return(
       <div style={form}>
