@@ -51,7 +51,7 @@ console.log(this.props)
     return(
       <div style={main} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseExit}>
         <div style={detail}>
-          <div style={title}><Link to={{pathname:'/main/proposals/'+this.props.id, state:{proposal:this.props.proposal}}}>{this.props.proposal.title}</Link></div>
+          <div style={title}><Link to={{pathname:this.props.match.url+'/'+this.props.id, state:{proposal:this.props.proposal}}}>{this.props.proposal.title}</Link></div>
           <div style={submit}>Submitted by john 5 days ago</div>
         </div>
         <div>Vote area</div>

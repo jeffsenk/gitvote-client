@@ -32,7 +32,7 @@ export default class ProposalScreen extends React.Component{
     if(this.state.proposals != null){
       let proposalArray = [];
       for(var key in this.state.proposals){
-        proposalArray.push(<ProposalItem key={key} id={key} proposal={this.state.proposals[key]}/>);
+        proposalArray.push(<ProposalItem {...this.props} key={key} id={key} proposal={this.state.proposals[key]}/>);
       };
       return(
 	<div style={main}>

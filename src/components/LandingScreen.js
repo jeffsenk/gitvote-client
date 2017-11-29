@@ -44,8 +44,8 @@ export default class LandingScreen extends React.Component{
         <Navbar>
           <Navbar.Form pullRight>
             <FormGroup>
-              <FormControl name='email' style={{width:'175px'}} type='text' onChange={this.handleChange} placeholder='Email'/>
-              <FormControl name='password' style={{width:'175px'}} type='text' onChange={this.handleChange} placeholder='Password'/>
+              <FormControl name='email' value={this.state.email} style={{width:'175px'}} type='text' onChange={this.handleChange} placeholder='Email'/>
+              <FormControl name='password' style={{width:'175px'}} type='password' onChange={this.handleChange} placeholder='Password'/>
             </FormGroup>
             <Button type='submit' onClick={this.toggleSignIn}>Sign In</Button>
           </Navbar.Form>

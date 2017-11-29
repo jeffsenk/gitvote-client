@@ -30,7 +30,7 @@ export default class MainContainer extends React.Component{
         </Navbar>
         <Switch>
           <Redirect from={this.props.match.url} exact to={this.props.match.url+'/proposals'}/>
-          <Route exact path={this.props.match.url+'/proposals'} component={ProposalScreen}/>
+          <Route exact path={this.props.match.url+'/proposals'} render={props=>(<ProposalScreen {...props}/>)}/>
           <Route exact path={this.props.match.url+'/members'} component={MemberScreen}/>
           <Route exact path={this.props.match.url+'/admin'} component={AdminScreen}/>
           <Route exact path={this.props.match.url+'/proposals/new'} component={NewProposalForm}/>

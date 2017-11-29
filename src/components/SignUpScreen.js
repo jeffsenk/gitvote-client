@@ -57,7 +57,7 @@ export default class SignUpScreen extends React.Component{
             <ControlLabel>Email</ControlLabel>
             <FormControl name='email' type='text' onChange={this.handleChange} placeholder='Enter Email Address'/>
             <ControlLabel>Password</ControlLabel>
-            <FormControl name='password' type='text' onChange={this.handleChange} placeholder='Password'/>
+            <FormControl name='password' type='password' onChange={this.handleChange} placeholder='Password'/>
           </FormGroup>
         </form>
         <Button onClick={this.handleSignUp} bsStyle='success' style={{marginTop:'3%'}}>Sign Up</Button>
