@@ -3,6 +3,10 @@ import {Panel} from 'react-bootstrap';
 
 export default class ProposalDetail extends React.Component{
 
+  componentDidMount(){
+    console.log('proposaldetail',this.props);
+  }
+
   render(){
     const main ={
       marginLeft:'15%',

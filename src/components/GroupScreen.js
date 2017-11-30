@@ -1,12 +1,13 @@
 import React from 'react';
 import {Navbar,ListGroup,ListGroupItem,Button} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
+import TeamItem from './TeamItem';
 
 export default class GroupScreen extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      teams:[]
+      teams:{}
     }
     this.handleSignOut = this.handleSignOut.bind(this);
   }
@@ -36,9 +37,9 @@ export default class GroupScreen extends React.Component{
       return(<Redirect to='/'/>);
     }
     let teamArray =[];
-    if(this.state.teams.length >0){
-      for(var i =0;i<this.state.teams.length;i++){
-        teamArray.push(<ListGroupItem key={i} href={'/teams/'+this.state.teams[i].name+'/proposals'}>{this.state.teams[i].name}</ListGroupItem>);
+    if(this.state.teams!=null){
+      for(var key in this.state.teams){
+        teamArray.push(<TeamItem {...this.props} key={key} teamKey={key} name={this.state.teams[key].name}/>);
       }  
     }
     teamArray.push(<ListGroupItem key='new' href='/newteam'> + Create a New Team </ListGroupItem>);

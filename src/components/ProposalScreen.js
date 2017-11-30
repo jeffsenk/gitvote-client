@@ -12,13 +12,26 @@ export default class ProposalScreen extends React.Component{
   }
 
   componentDidMount(){
-    fetch('http://localhost:3000/proposals').then((res)=>res.json())
+console.log('proposalscreen',this.props)
+    if(this.props.match.params.id){
+    fetch('/proposals',{
+        method:'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          teamKey: this.props.match.params.id
+        })
+    })
+    .then((res)=>res.json())
     .then((proposals)=>{
       this.setState({proposals:proposals});
     })
     .catch((err)=>{
       console.log(err);
     });
+    }
   }
 
   render(){
@@ -31,8 +44,8 @@ export default class ProposalScreen extends React.Component{
 
     if(this.state.proposals != null){
       let proposalArray = [];
-      for(var key in this.state.proposals){
-        proposalArray.push(<ProposalItem {...this.props} key={key} id={key} proposal={this.state.proposals[key]}/>);
+      for(var key in this.state.proposals){ 
+       proposalArray.push(<ProposalItem {...this.props} key={key} id={key} proposal={this.state.proposals[key]}/>);
       };
       return(
 	<div style={main}>

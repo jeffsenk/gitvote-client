@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default class ProposalItem extends React.Component{
+export default class TeamItem extends React.Component{
   constructor(props){
     super(props);
     this.state={
@@ -19,7 +19,7 @@ export default class ProposalItem extends React.Component{
     this.setState({highlight:'initial'});
   }
   componentDidMount(){
-    console.log('proposalitem',this.props)
+    console.log(this.props.teamKey,this.props.name)
   }
 
   render(){
@@ -43,17 +43,14 @@ export default class ProposalItem extends React.Component{
       height:'50%',
       fontSize:'large'
     }
-    const submit={
-      color:'gray',
-    }
 
     return(
       <div style={main} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseExit}>
         <div style={detail}>
-          <div style={title}><Link to={{pathname:this.props.match.url+'/proposals/'+this.props.id,state:{proposal:this.props.proposal} }}>{this.props.proposal.title}</Link></div>
-          <div style={submit}>Submitted by john 5 days ago</div>
+          <div style={title}><Link to={{pathname:this.props.match.url+'/'+this.props.teamKey}}>
+          {this.props.name}</Link>
+          </div>
         </div>
-        <div>Vote area</div>
       </div>
     );
   }
