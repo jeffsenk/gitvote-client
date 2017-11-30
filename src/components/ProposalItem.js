@@ -18,9 +18,6 @@ export default class ProposalItem extends React.Component{
   handleMouseExit(){
     this.setState({highlight:'initial'});
   }
-  componentDidMount(){
-    console.log('proposalitem',this.props)
-  }
 
   render(){
     const main={

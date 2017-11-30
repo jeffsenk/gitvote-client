@@ -12,7 +12,6 @@ export default class ProposalScreen extends React.Component{
   }
 
   componentDidMount(){
-console.log('proposalscreen',this.props)
     if(this.props.match.params.id){
     fetch('/proposals',{
         method:'POST',
@@ -50,7 +49,7 @@ console.log('proposalscreen',this.props)
       return(
 	<div style={main}>
 	  <div style={{marginBottom:'1%',float:'right'}}>
-	    <Button href={this.props.match.url +'/new'} bsStyle='success'>New Proposal</Button>
+	    <Button href={this.props.match.url +'/proposals/new'} bsStyle='success'>New Proposal</Button>
 	  </div>
 	  <Panel style={{clear:'both'}} header='heading'>
 	    <ListGroup fill componentClass='ul'>
@@ -63,7 +62,7 @@ console.log('proposalscreen',this.props)
     return(
       <div style={main}>
         <div style={{marginBottom:'1%',float:'right'}}>
-          <Button href={this.props.match.url + '/new'} bsStyle='success'>New Proposal</Button>
+          <Button href={this.props.match.url + '/proposals/new'} bsStyle='success'>New Proposal</Button>
         </div>
         <Panel style={{clear:'both'}} header='heading'>
           <ListGroup fill>

@@ -18,7 +18,6 @@ class App extends Component {
   }
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(currentUser){
-console.log(currentUser)
       if(currentUser){
         this.setState({
           authUser: currentUser
@@ -43,7 +42,7 @@ console.log(currentUser)
           <LandingScreen auth={firebase.auth()} database={firebase.database()}/>
         ))}/>
         <Route exact path='/signup' render={props=>(<SignUpScreen auth={firebase.auth()} database={firebase.database()}/>)}/>
-        <Route exact path='/teams' render={props=>(<GroupScreen auth={firebase.auth()} database={firebase.database()}/>)}/>
+        <Route exact path='/teams' render={props=>(<GroupScreen {...props} auth={firebase.auth()} database={firebase.database()}/>)}/>
         <Route exact path='/newteam' render={props=>(<NewTeamForm auth={firebase.auth()} database={firebase.database()}/>)}/>
         <Route path='/teams/:id' render={props=>(<MainContainer {...props} auth={firebase.auth()}/>)}/>
       </div>

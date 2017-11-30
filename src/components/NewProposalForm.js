@@ -58,6 +58,7 @@ export default class NewProposalForm extends React.Component{
 	  quorumType:this.state.quorumType,
 	  deadline:this.state.deadline,
 	  invitees:this.state.tags,
+          team:this.props.match.params.id,
 	  timeStamp:Date.now()
 	})
       }).then(function(res){
@@ -135,7 +136,7 @@ export default class NewProposalForm extends React.Component{
 
     if(this.state.submitted){
       return(
-        <Redirect to='/main/proposals'/>
+        <Redirect to= {this.props.match.url+'/proposals'}/>
       );
     }
     return(
