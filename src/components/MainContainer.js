@@ -5,6 +5,8 @@ import NewProposalForm from './NewProposalForm';
 import ProposalDetail from './ProposalDetail';
 import AdminScreen from './AdminScreen';
 import TeamScreen from './TeamScreen';
+import UserDetail from './UserDetail';
+
 import {Nav, NavItem,Navbar,Button} from 'react-bootstrap';
 
 export default class MainContainer extends React.Component{
@@ -65,6 +67,7 @@ export default class MainContainer extends React.Component{
           <Route exact path={this.props.match.url+'/admin'} component={AdminScreen}/>
           <Route exact path={this.props.match.url+'/proposals/new'} render={(props)=>(<NewProposalForm {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/proposals/:id'} render={(props)=>(<ProposalDetail {...this.props}/>)}/>
+          <Route exact path={this.props.match.url+'/:id'} render={(props)=>(<UserDetail {...this.props}/>)}/>
         </Switch>
       </div>
     );
