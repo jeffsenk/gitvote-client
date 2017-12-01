@@ -31,10 +31,24 @@ export default class SignUpScreen extends React.Component{
       this.props.auth.signOut();
     }else{
       this.props.auth.createUserWithEmailAndPassword(this.state.email,this.state.password).then(function(user){
-        this.props.database.ref('Users/'+user.uid).set(true);
-        this.props.database.ref('Users/'+user.uid+'/Name').set(this.state.name);
-        this.props.database.ref('Users/'+user.uid+'/email').set(this.state.email);
-        this.setState({signedUp:true});
+	fetch('/newUser',{
+	  method: 'POST',
+	  headers: {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json',
+	   },
+	  body: JSON.stringify({
+	    userKey:user.uid,
+            name:this.state.name,
+            email:this.state.email
+	  })
+	}).then(function(res){
+	  if(!res.ok){
+	    alert('Error Creating User');
+          }else{
+             this.setState({signedUp:true});
+          }
+        }.bind(this));
       }.bind(this),function(error){
         alert(error.message);
       });

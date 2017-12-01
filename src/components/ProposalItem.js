@@ -9,6 +9,7 @@ export default class ProposalItem extends React.Component{
     }
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseExit = this.handleMouseExit.bind(this);
+    this.calculateAge = this.calculateAge.bind(this);
   }
 
   handleMouseEnter(){
@@ -17,6 +18,12 @@ export default class ProposalItem extends React.Component{
 
   handleMouseExit(){
     this.setState({highlight:'initial'});
+  }
+
+  calculateAge(timeStamp){
+    let millis = Number(Date.now() - timeStamp);
+    let day = Number(100*60*60*24);
+    return Number(millis/day)
   }
 
   render(){
@@ -44,11 +51,13 @@ export default class ProposalItem extends React.Component{
       color:'gray',
     }
 
+    let age = this.calculateAge(this.props.proposal.timeStamp).toFixed(2);
+
     return(
       <div style={main} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseExit}>
         <div style={detail}>
           <div style={title}><Link to={{pathname:this.props.match.url+'/proposals/'+this.props.id,state:{proposal:this.props.proposal} }}>{this.props.proposal.title}</Link></div>
-          <div style={submit}>Submitted by john 5 days ago</div>
+          <div style={submit}>Submitted by {this.props.proposal.userName} {age} days ago</div>
         </div>
         <div>Vote area</div>
       </div>

@@ -18,9 +18,6 @@ export default class TeamItem extends React.Component{
   handleMouseExit(){
     this.setState({highlight:'initial'});
   }
-  componentDidMount(){
-    console.log(this.props.teamKey,this.props.name)
-  }
 
   render(){
     const main={

@@ -14,6 +14,8 @@ export default class NewProposalForm extends React.Component{
       quorumType:"Count",
       quorum:1,
       deadline:1,
+      userName:'',
+      userKey:'',
       tags:[],
       suggestions:[]
     }
@@ -21,6 +23,16 @@ export default class NewProposalForm extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
+  }
+  componentDidMount(){
+    this.props.auth.onAuthStateChanged(function(currentUser){
+      if(currentUser){
+        this.setState({userKey:currentUser.uid});
+        fetch('/users/'+currentUser.uid).then((res)=>res.json()).then((data)=>{
+          this.setState({userName:data.name});
+        });
+      }
+    }.bind(this))
   }
 
   handleDelete (i) {
@@ -44,7 +56,7 @@ export default class NewProposalForm extends React.Component{
 
   handleSubmit(){
     if(this.state.title.length>0 && this.state.description.length>0){
-      fetch('/newWebProposal',{
+      fetch('/newProposal',{
 	method: 'POST',
 	headers: {
 	  'Accept': 'application/json',
@@ -59,6 +71,8 @@ export default class NewProposalForm extends React.Component{
 	  deadline:this.state.deadline,
 	  invitees:this.state.tags,
           team:this.props.match.params.id,
+          userName:this.state.userName,
+          userKey:this.state.userKey,
 	  timeStamp:Date.now()
 	})
       }).then(function(res){

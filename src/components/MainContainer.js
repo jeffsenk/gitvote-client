@@ -1,7 +1,6 @@
 import React from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import ProposalScreen from './ProposalScreen';
-import MemberScreen from './MemberScreen';
 import NewProposalForm from './NewProposalForm';
 import ProposalDetail from './ProposalDetail';
 import AdminScreen from './AdminScreen';
@@ -53,18 +52,16 @@ export default class MainContainer extends React.Component{
 	  <Nav bsStyle='tabs'>
 	    <NavItem href={this.props.match.url}>Team</NavItem>
 	    <NavItem href={this.props.match.url + '/proposals'}>Proposals</NavItem>
-	    <NavItem href={this.props.match.url + '/members'}>Members</NavItem>
 	    <NavItem href={this.props.match.url + '/admin'}>Admin</NavItem>
 	  </Nav>
            <Navbar.Form pullRight>
              <Button style={{marginLeft:'10px'}} onClick={this.handleSignOut}>Sign Out</Button>
            </Navbar.Form>
-           <Navbar.Text pullRight>Signed in As {this.state.user.Name}</Navbar.Text>
+           <Navbar.Text pullRight>Signed in As {this.state.user.name}</Navbar.Text>
         </Navbar>
         <Switch>
           <Route exact path={this.props.match.url} render={(props)=>(<TeamScreen {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/proposals'}  render={(props)=>(<ProposalScreen {...this.props} />)}/>
-          <Route exact path={this.props.match.url+'/members'} component={MemberScreen}/>
           <Route exact path={this.props.match.url+'/admin'} component={AdminScreen}/>
           <Route exact path={this.props.match.url+'/proposals/new'} render={(props)=>(<NewProposalForm {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/proposals/:id'} render={(props)=>(<ProposalDetail {...this.props}/>)}/>
