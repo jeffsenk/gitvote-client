@@ -2,9 +2,6 @@ import React from 'react';
 import TeamIcon from 'react-icons/lib/fa/user';
 
 export default class UserDetail extends React.Component{
-  constructor(props){
-    super(props);
-  }
 
   render(){
     return(

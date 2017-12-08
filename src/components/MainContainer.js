@@ -15,6 +15,7 @@ export default class MainContainer extends React.Component{
     this.handleSignOut = this.handleSignOut.bind(this);
     this.state={
       user:'',
+      userKey:'',
       signedOut:false
     }
   }
@@ -27,8 +28,8 @@ export default class MainContainer extends React.Component{
   componentDidMount(){
     this.props.auth.onAuthStateChanged(function(currentUser){
       if(currentUser){
-        fetch('/users/'+this.props.auth.currentUser.uid).then((res)=>res.json()).then((data)=>{
-          this.setState({user:data});
+        fetch('/users/'+currentUser.uid).then((res)=>res.json()).then((data)=>{
+          this.setState({user:data,userKey:currentUser.uid});
         });
       }
     }.bind(this));
@@ -66,7 +67,7 @@ export default class MainContainer extends React.Component{
           <Route exact path={this.props.match.url+'/proposals'}  render={(props)=>(<ProposalScreen {...this.props} />)}/>
           <Route exact path={this.props.match.url+'/admin'} component={AdminScreen}/>
           <Route exact path={this.props.match.url+'/proposals/new'} render={(props)=>(<NewProposalForm {...this.props}/>)}/>
-          <Route exact path={this.props.match.url+'/proposals/:id'} render={(props)=>(<ProposalDetail {...this.props}/>)}/>
+          <Route exact path={this.props.match.url+'/proposals/:id'} render={(props)=>(<ProposalDetail userKey={this.state.userKey} {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/:id'} render={(props)=>(<UserDetail {...this.props}/>)}/>
         </Switch>
       </div>
