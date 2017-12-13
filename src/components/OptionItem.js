@@ -44,7 +44,7 @@ export default class OptionItem extends React.Component{
         <div style={{marginLeft:'2%',display:'flex',flexDirection:'row'}}>
           <div style={{width:'120px',display:'flex',alignItems:'center',justifyContent:'center'}}>{this.props.title}</div>
           <div style={{width:'75px',display:'flex',borderLeftStyle:'solid',borderLeftWidth:'3px',borderLeftColor:this.props.color,alignItems:'center',
-          justifyContent:'center'}}>40</div>
+          justifyContent:'center'}}>{this.props.count}</div>
         </div>
       </div>
     );

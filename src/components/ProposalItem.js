@@ -22,7 +22,7 @@ export default class ProposalItem extends React.Component{
 
   calculateAge(timeStamp){
     let millis = Number(Date.now() - timeStamp);
-    let day = Number(100*60*60*24);
+    let day = Number(1000*60*60*24);
     return Number(millis/day)
   }
 
@@ -47,19 +47,28 @@ export default class ProposalItem extends React.Component{
       height:'50%',
       fontSize:'large'
     }
+    const stats={
+      paddingTop:'5px',
+      color: 'gray'
+    }
     const submit={
       color:'gray',
     }
 
-    let age = this.calculateAge(this.props.proposal.timeStamp).toFixed(2);
+    let age = this.calculateAge(this.props.proposal.timeStamp).toFixed(1);
+    let voteCount = 0;
+    if(this.props.proposal.Votes){
+      voteCount = Object.keys(this.props.proposal.Votes).length;
+    }
 
     return(
       <div style={main} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseExit}>
         <div style={detail}>
-          <div style={title}><Link to={{pathname:this.props.match.url+'/proposals/'+this.props.id,state:{proposal:this.props.proposal} }}>{this.props.proposal.title}</Link></div>
+          <div style={title}><Link to={{pathname:this.props.match.url+'/proposals/'+this.props.id,
+           state:{proposal:this.props.proposal,proposalKey:this.props.id}}}>{this.props.proposal.title}</Link></div>
           <div style={submit}>Submitted by {this.props.proposal.userName} {age} days ago</div>
         </div>
-        <div>Vote area</div>
+        <div style={stats}>{voteCount} Votes</div>
       </div>
     );
   }

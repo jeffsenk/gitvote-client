@@ -55,6 +55,11 @@ export default class NewProposalForm extends React.Component{
   }
 
   handleSubmit(){
+    let options ={};
+    for(var key in this.state.tags){
+      options[this.state.tags[key].name] = 0;
+    }
+console.log(options)
     if(this.state.title.length>0 && this.state.description.length>0){
       fetch('/newProposal',{
 	method: 'POST',
@@ -69,7 +74,7 @@ export default class NewProposalForm extends React.Component{
 	  quorum:this.state.quorum,
 	  quorumType:this.state.quorumType,
 	  deadline:this.state.deadline,
-	  invitees:this.state.tags,
+	  Options:options,
           team:this.props.match.params.id,
           userName:this.state.userName,
           userKey:this.state.userKey,
@@ -191,9 +196,9 @@ export default class NewProposalForm extends React.Component{
             <div style={{display:'inline-block'}}>Days</div>
           </div>
           <div style={invitees}>
-            <div>Invitees</div>
+            <div>Options</div>
             <ReactTags tags={this.state.tags} suggestions={this.state.suggestions} handleDelete={this.handleDelete}
-	      placeholder='Select Users' handleAddition={this.handleAddition} allowNew={true}
+	      placeholder='Add an Option and Hit "Enter"' handleAddition={this.handleAddition} allowNew={true}
               autofocus={false} autoresize={false} />
           </div>
         </div>
