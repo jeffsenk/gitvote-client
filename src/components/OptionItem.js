@@ -32,7 +32,7 @@ export default class OptionItem extends React.Component{
       flexDirection:'row',
       borderStyle:'solid',
       borderColor:this.props.color,
-      borderWidth:'3px',
+      borderWidth:'2px',
       marginBottom:'10px',
       borderRadius:'7px',
       width:'200px',

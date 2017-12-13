@@ -51,7 +51,7 @@ export default class ProposalScreen extends React.Component{
 	  <div style={{marginBottom:'1%',float:'right'}}>
 	    <Button href={this.props.match.url +'/proposals/new'} bsStyle='success'>New Proposal</Button>
 	  </div>
-	  <Panel style={{clear:'both'}} header='heading'>
+	  <Panel style={{clear:'both'}} header='Proposals'>
 	    <ListGroup fill componentClass='ul'>
 	      {proposalArray}
 	    </ListGroup>
