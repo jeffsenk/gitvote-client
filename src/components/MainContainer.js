@@ -65,7 +65,7 @@ export default class MainContainer extends React.Component{
         <Switch>
           <Route exact path={this.props.match.url} render={(props)=>(<TeamScreen {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/proposals'}  render={(props)=>(<ProposalScreen {...this.props} />)}/>
-          <Route exact path={this.props.match.url+'/admin'} component={AdminScreen}/>
+          <Route exact path={this.props.match.url+'/admin'} render={(props)=>(<AdminScreen {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/proposals/new'} render={(props)=>(<NewProposalForm {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/proposals/:id'} render={(props)=>(<ProposalDetail userKey={this.state.userKey} {...this.props}/>)}/>
           <Route exact path={this.props.match.url+'/:id'} render={(props)=>(<UserDetail {...this.props}/>)}/>

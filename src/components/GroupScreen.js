@@ -7,7 +7,8 @@ export default class GroupScreen extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      teams:{}
+      teams:{},
+      invitations:{}
     }
     this.handleSignOut = this.handleSignOut.bind(this);
   }
@@ -28,7 +29,19 @@ export default class GroupScreen extends React.Component{
         })
       }).then((res)=>res.json()).then((teams)=>{
 	this.setState({teams:teams});
-      })    
+      }) 
+      fetch('/userInvitations',{
+        method:'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userKey: this.props.auth.currentUser.uid
+        })
+      }).then((res)=>res.json()).then((invitations)=>{
+        this.setState({invitations:invitations});
+      })   
     }
   }
 
@@ -43,6 +56,12 @@ export default class GroupScreen extends React.Component{
       }  
     }
     teamArray.push(<ListGroupItem key='new' href='/newteam'> + Create a New Team </ListGroupItem>);
+    let invitationArray =[];
+    if(this.state.invitations!=null){
+      for(key in this.state.invitations){
+        invitationArray.push(<TeamItem {...this.props} key={key} teamKey={key} name={this.state.invitations[key].name}/>);
+      }
+    }
     return(
       <div>
         <Navbar>
@@ -54,6 +73,10 @@ export default class GroupScreen extends React.Component{
         <h1>Select A Team</h1>
         <ListGroup>
           {teamArray}
+        </ListGroup>
+        <h1>Invitations</h1>
+        <ListGroup>
+          {invitationArray}
         </ListGroup>
         </div>
       </div>

@@ -59,7 +59,7 @@ export default class NewProposalForm extends React.Component{
     for(var key in this.state.tags){
       options[this.state.tags[key].name] = 0;
     }
-console.log(options)
+
     if(this.state.title.length>0 && this.state.description.length>0){
       fetch('/newProposal',{
 	method: 'POST',
