@@ -1,5 +1,6 @@
 import React from 'react';
 import {Navbar,Button,FormControl,FormGroup} from 'react-bootstrap';
+import backgroundImage from '../framesBackground.jpg';
 
 export default class LandingScreen extends React.Component{
   constructor(props){
@@ -38,10 +39,16 @@ export default class LandingScreen extends React.Component{
     }
   }
 
+
   render(){
     return(
-      <div>
+      <div style={{height:'100%',backgroundImage:'url('+ backgroundImage +')',backgroundSize:'cover',overflow:'hidden'}}>
         <Navbar>
+           <Navbar.Header>
+             <Navbar.Brand>
+               <a href='/'>GitVote</a>
+             </Navbar.Brand>
+           </Navbar.Header>
           <Navbar.Form pullRight>
             <FormGroup>
               <FormControl name='email' value={this.state.email} style={{width:'175px'}} type='text' onChange={this.handleChange} placeholder='Email'/>
@@ -50,10 +57,11 @@ export default class LandingScreen extends React.Component{
             <Button type='submit' onClick={this.toggleSignIn}>Sign In</Button>
           </Navbar.Form>
         </Navbar>
-      <div style={{display:'flex',flexDirection:'column',alignItems:'center',marginTop:'10%'}}>
-        <h1>GitVote</h1>
-        <Button href='/signup' bsStyle='success' style={{marginTop:'3%'}}>Sign Up</Button>
-      </div>
+        <div style={{width:'45%',marginTop:'12%',marginLeft:'53%'}}>
+          <h1 style={{fontSize:'400%'}}>Create Consensus</h1>
+          <h2 style={{color:'gray'}}>The easy way for teams to make decisions and move forward</h2>
+          <Button href='/signup' bsStyle='success' style={{marginTop:'3%'}}>Get Started</Button>
+        </div>
       </div>
     );
   }
