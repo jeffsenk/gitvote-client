@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navbar,Button,FormControl,FormGroup} from 'react-bootstrap';
-import backgroundImage from '../framesBackground.jpg';
+import backgroundImage from '../colorfulBackground.jpg';
 
 export default class LandingScreen extends React.Component{
   constructor(props){
@@ -58,9 +58,9 @@ export default class LandingScreen extends React.Component{
           </Navbar.Form>
         </Navbar>
         <div style={{width:'45%',marginTop:'12%',marginLeft:'53%'}}>
-          <h1 style={{fontSize:'400%'}}>Create Consensus</h1>
-          <h2 style={{color:'gray'}}>The easy way for teams to make decisions and move forward</h2>
-          <Button href='/signup' bsStyle='success' style={{marginTop:'3%'}}>Get Started</Button>
+          <h1 style={{fontSize:'400%',color:'dimgray'}}>Create Consensus</h1>
+          <h2 style={{color:'white'}}>Gitvote is the easy way for teams to make decisions and move forward</h2>
+          <Button href='/signup' bsStyle='primary' style={{marginTop:'3%'}}>Get Started</Button>
         </div>
       </div>
     );

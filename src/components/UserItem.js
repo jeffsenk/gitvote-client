@@ -25,6 +25,7 @@ export default class UserItem extends React.Component{
       backgroundColor:this.state.highlight,
       display:'flex',
       flexDirection:'row',
+      alignItems:'center',
       height:'70px'
     }
     const title={

@@ -60,22 +60,33 @@ export default class SignUpScreen extends React.Component{
       return(<Redirect to='/'/>);
     }
     return(
-      <div>
+      <div style={{height:'100%'}}>
         <Navbar>
+	 <Navbar.Header>
+	   <Navbar.Brand>
+	     <a href='/'>GitVote</a>
+	   </Navbar.Brand>
+	 </Navbar.Header>
         </Navbar>
-      <div style={{display:'flex',flexDirection:'column',alignItems:'center',marginTop:'10%'}}>
-        <form>
+        <div style={{marginTop:'5%',height:'100%',display:'flex',justifyContent:'center'}}>
+          <div style={{width:'40%',marginLeft:'5%'}}>
+            <h1>Create a New Login</h1>
+            <h2 style={{marginTop:'5%',color:'gray'}}>In the Next Step You Can Join a Team, or Start A New One</h2>
+          </div>
+          <div style={{borderRadius:'5%',marginLeft:'10%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flexstart',width:'30%',height:'60%',backgroundColor:'rebeccapurple'}}>
+          <form style={{marginTop:'10%'}}>
           <FormGroup>
-            <ControlLabel>UserName</ControlLabel>
+            <ControlLabel style={{color:'white'}}>UserName</ControlLabel>
             <FormControl name='name' type='text' onChange={this.handleChange} placeholder='Select a User Name'/>
-            <ControlLabel>Email</ControlLabel>
+            <ControlLabel style={{color:'white'}}>Email</ControlLabel>
             <FormControl name='email' type='text' onChange={this.handleChange} placeholder='Enter Email Address'/>
-            <ControlLabel>Password</ControlLabel>
+            <ControlLabel style={{color:'white'}}>Password</ControlLabel>
             <FormControl name='password' type='password' onChange={this.handleChange} placeholder='Password'/>
           </FormGroup>
-        </form>
-        <Button onClick={this.handleSignUp} bsStyle='success' style={{marginTop:'3%'}}>Sign Up</Button>
-      </div>
+          </form>
+          <Button onClick={this.handleSignUp} bsStyle='success' style={{marginTop:'3%'}}>Sign Up</Button>
+          </div>
+        </div>
       </div>
     );
   }

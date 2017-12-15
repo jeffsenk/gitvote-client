@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListGroup} from 'react-bootstrap';
+import {Panel,ListGroup} from 'react-bootstrap';
 import UserItem from './UserItem';
 import TeamIcon from 'react-icons/lib/fa/rocket';
 
@@ -25,7 +25,7 @@ export default class TeamScreen extends React.Component{
 
   render(){
     const memberList={
-      width:'30%'
+      width:'70%'
     }
 
     if(this.state.team != null){
@@ -36,13 +36,15 @@ export default class TeamScreen extends React.Component{
         }
       } 
       return(
-	<div style={{marginLeft:'10%'}}>
+	<div style={{marginLeft:'15%'}}>
           <TeamIcon style={{width:'50px',height:'50px'}}/>
-	  <h1>{this.state.team.name}</h1>
+	  <h1 style={{color:'dimgray'}}>{this.state.team.name}</h1>
           <div style={memberList}>
-	    <ListGroup>
+            <Panel header='Members'>
+	    <ListGroup fill componentClass='ul'>
 	      {memberArray}
 	    </ListGroup>
+            </Panel>
           </div>
 	</div>
       );

@@ -53,7 +53,7 @@ export default class AdminScreen extends React.Component{
     return(
       <div>
         <div style={form}>
-          <h4>Invite a new Member</h4>
+          <h3>Invite a new Member</h3>
           <input name='email' type='text' placeholder='enter email address' value={this.state.email} onChange={this.handleChange} />
           <div style={{marginTop:'10px'}}>
             <Button bsStyle='success' onClick={this.handleSubmit}>Submit</Button>
