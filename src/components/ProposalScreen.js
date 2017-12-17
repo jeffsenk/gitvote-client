@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {Panel,ListGroup} from 'react-bootstrap';
 import ProposalItem from './ProposalItem';
+import apiServer from '../apiServer';
 
 export default class ProposalScreen extends React.Component{
   constructor(props){
@@ -13,7 +14,7 @@ export default class ProposalScreen extends React.Component{
 
   componentDidMount(){
     if(this.props.match.params.id){
-    fetch('/proposals',{
+    fetch(apiServer+'/proposals',{
         method:'POST',
         headers:{
           'Accept': 'application/json',

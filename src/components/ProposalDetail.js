@@ -1,6 +1,8 @@
 import React from 'react';
 import {Panel} from 'react-bootstrap';
 import OptionItem from './OptionItem';
+import apiServer from '../apiServer';
+
 export default class ProposalDetail extends React.Component{
   constructor(props){
     super(props);
@@ -37,7 +39,7 @@ export default class ProposalDetail extends React.Component{
 
   fetchProposal(){
     if(this.props.location.state.proposalKey){
-      fetch('/proposals/'+this.props.location.state.proposalKey).then((res)=>res.json())
+      fetch(apiServer+'/proposals/'+this.props.location.state.proposalKey).then((res)=>res.json())
       .then((data)=>{
 	this.setState({proposal:data});
       })
@@ -46,7 +48,7 @@ export default class ProposalDetail extends React.Component{
 
   handleVote(option){
     if(this.props.location.state.status === 'open'){
-    fetch('/newVote',{
+    fetch(apiServer+'/newVote',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',

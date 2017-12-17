@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import {Button} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
+import apiServer from '../apiServer';
 
 export default class NewProposalForm extends React.Component{
   constructor(props){
@@ -28,7 +29,7 @@ export default class NewProposalForm extends React.Component{
     this.props.auth.onAuthStateChanged(function(currentUser){
       if(currentUser){
         this.setState({userKey:currentUser.uid});
-        fetch('/users/'+currentUser.uid).then((res)=>res.json()).then((data)=>{
+        fetch(apiServer+'/Users/'+currentUser.uid).then((res)=>res.json()).then((data)=>{
           this.setState({userName:data.name});
         });
       }
@@ -61,7 +62,7 @@ export default class NewProposalForm extends React.Component{
     }
 
     if(this.state.title.length>0 && this.state.description.length>0){
-      fetch('/newProposal',{
+      fetch(apiServer+'/newProposal',{
 	method: 'POST',
 	headers: {
 	  'Accept': 'application/json',

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navbar,Button,FormControl,FormGroup} from 'react-bootstrap';
-import backgroundImage from '../colorfulBackground.jpg';
+import backgroundImage from '../brightBackground.png';
 
 export default class LandingScreen extends React.Component{
   constructor(props){
@@ -57,8 +57,8 @@ export default class LandingScreen extends React.Component{
             <Button type='submit' onClick={this.toggleSignIn}>Sign In</Button>
           </Navbar.Form>
         </Navbar>
-        <div style={{width:'45%',marginTop:'12%',marginLeft:'53%'}}>
-          <h1 style={{fontSize:'400%',color:'dimgray'}}>Create Consensus</h1>
+        <div style={{width:'45%',marginTop:'6%',marginLeft:'53%'}}>
+          <h1 style={{fontSize:'400%',color:'darkgray'}}>Create Consensus</h1>
           <h2 style={{color:'white'}}>Gitvote is the easy way for teams to make decisions and move forward</h2>
           <Button href='/signup' bsStyle='primary' style={{marginTop:'3%'}}>Get Started</Button>
         </div>

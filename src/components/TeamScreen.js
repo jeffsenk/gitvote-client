@@ -2,6 +2,7 @@ import React from 'react';
 import {Panel,ListGroup} from 'react-bootstrap';
 import UserItem from './UserItem';
 import TeamIcon from 'react-icons/lib/fa/rocket';
+import apiServer from '../apiServer';
 
 export default class TeamScreen extends React.Component{
   constructor(props){
@@ -13,11 +14,11 @@ export default class TeamScreen extends React.Component{
   }
 
   componentDidMount(){
-    fetch('/teams/'+this.props.match.params.id).then((res)=>res.json())
+    fetch(apiServer+'/teams/'+this.props.match.params.id).then((res)=>res.json())
     .then((data)=>{
       this.setState({team:data});
     });
-    fetch('/teamMembers/'+this.props.match.params.id).then((res)=>res.json())
+    fetch(apiServer+'/teamMembers/'+this.props.match.params.id).then((res)=>res.json())
     .then((data)=>{
       this.setState({members:data});
     });

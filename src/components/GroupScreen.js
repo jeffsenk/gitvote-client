@@ -2,6 +2,7 @@ import React from 'react';
 import {Navbar,ListGroup,ListGroupItem,Button} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
 import TeamItem from './TeamItem';
+import apiServer from '../apiServer'
 
 export default class GroupScreen extends React.Component{
   constructor(props){
@@ -20,7 +21,7 @@ export default class GroupScreen extends React.Component{
   }
 
   acceptInvitation(teamKey,userKey){
-    fetch('/acceptInvitation',{
+    fetch(apiServer+'/acceptInvitation',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -41,7 +42,7 @@ export default class GroupScreen extends React.Component{
   }
 
   declineInvitation(teamKey,userKey){
-    fetch('/declineInvitation',{
+    fetch(apiServer+'/declineInvitation',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -62,7 +63,7 @@ export default class GroupScreen extends React.Component{
   }
 
   fetchInvitations(){
-    fetch('/userInvitations',{
+    fetch(apiServer+'/userInvitations',{
       method:'POST',
       headers:{
 	'Accept': 'application/json',
@@ -75,9 +76,8 @@ export default class GroupScreen extends React.Component{
       this.setState({invitations:invitations});
     })
   }
-
   fetchTeams(){
-      fetch('/userTeams',{
+      fetch(apiServer+'/userTeams',{
         method:'POST',
         headers:{
           'Accept': 'application/json',

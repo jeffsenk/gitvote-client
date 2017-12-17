@@ -1,6 +1,7 @@
 import React from 'react';
 import {Navbar,Button,FormControl,FormGroup,ControlLabel} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
+import apiServer from '../apiServer';
 
 export default class SignUpScreen extends React.Component{
   constructor(props){
@@ -31,7 +32,7 @@ export default class SignUpScreen extends React.Component{
       this.props.auth.signOut();
     }else{
       this.props.auth.createUserWithEmailAndPassword(this.state.email,this.state.password).then(function(user){
-	fetch('/newUser',{
+	fetch(apiServer+'/newUser',{
 	  method: 'POST',
 	  headers: {
 	    'Accept': 'application/json',

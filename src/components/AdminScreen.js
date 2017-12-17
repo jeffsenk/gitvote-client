@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import apiServer from '../apiServer';
 
 export default class AdminScreen extends React.Component{
   constructor(props){
@@ -21,7 +22,7 @@ export default class AdminScreen extends React.Component{
 
   handleSubmit(){
     console.log(this.props.match.params.id,this.state.email)
-    fetch('/addMember',{
+    fetch(apiServer+'/addMember',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',

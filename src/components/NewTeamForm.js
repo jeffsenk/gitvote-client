@@ -1,6 +1,7 @@
 import React from 'react';
 import {Navbar,Button,FormControl,FormGroup,ControlLabel} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
+import apiServer from '../apiServer';
 
 export default class NewTeamForm extends React.Component{
   constructor(props){
@@ -19,7 +20,7 @@ export default class NewTeamForm extends React.Component{
     this.setState({[key]:value});
   }
   handleCreate(){
-    fetch('/newTeam',{
+    fetch(apiServer+'/newTeam',{
       method: 'POST',
       headers: {
 	'Accept': 'application/json',

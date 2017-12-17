@@ -6,6 +6,7 @@ import ProposalDetail from './ProposalDetail';
 import AdminScreen from './AdminScreen';
 import TeamScreen from './TeamScreen';
 import UserDetail from './UserDetail';
+import apiServer from '../apiServer';
 
 import {Nav, NavItem,Navbar,Button} from 'react-bootstrap';
 
@@ -28,7 +29,7 @@ export default class MainContainer extends React.Component{
   componentDidMount(){
     this.props.auth.onAuthStateChanged(function(currentUser){
       if(currentUser){
-        fetch('/users/'+currentUser.uid).then((res)=>res.json()).then((data)=>{
+        fetch(apiServer+'/Users/'+currentUser.uid).then((res)=>res.json()).then((data)=>{
           this.setState({user:data,userKey:currentUser.uid});
         });
       }
