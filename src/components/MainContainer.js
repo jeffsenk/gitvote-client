@@ -53,7 +53,7 @@ export default class MainContainer extends React.Component{
                <a href='/'>GitVote</a>
              </Navbar.Brand>
            </Navbar.Header>
-	  <Nav bsStyle='tabs'>
+	  <Nav bsStyle='pills' activeKey={this.state.activeKey} >
 	    <NavItem href={this.props.match.url}>Team</NavItem>
 	    <NavItem href={this.props.match.url + '/proposals'}>Proposals</NavItem>
 	    <NavItem href={this.props.match.url + '/admin'}>Admin</NavItem>

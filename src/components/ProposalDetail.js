@@ -28,6 +28,8 @@ export default class ProposalDetail extends React.Component{
       if(options[key] > count){
         count = options[key];
         result = key;
+      }else if(options[key] == count){
+        result = 'Undecided';
       }
     }
     return result;
@@ -74,9 +76,9 @@ export default class ProposalDetail extends React.Component{
 
   render(){
     const main ={
-      marginLeft:'15%',
+      marginLeft:'10%',
       marginTop:'3%',
-      width:'70%',
+      width:'80%',
       height:'100%'
     }
 
@@ -105,19 +107,21 @@ export default class ProposalDetail extends React.Component{
   
     return(
       <div style={main}>
-        <h1>{this.props.location.state.proposal.title}</h1>
+        <div style={{display:'flex',flexDirection:'row'}}>
+          <h1 style={{width:'62%'}}>{this.props.location.state.proposal.title}</h1>
+	    {this.props.location.state.status === 'closed' &&
+	      <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'300px',marginLeft:'auto',height:'40px',borderStyle:'solid',borderRadius:'7px',borderWidth:'2px'}}>
+		<h4>{result}</h4>
+	      </div>
+	    }
+        </div>
         <div style={{display:'flex',flexDirection:'row'}}>
           <div style={{width:'70%'}}>
-          <Panel  header={'Submitted by '+submitter+' '+age+' days ago'}>
-            <div>{this.props.location.state.proposal.description}</div>
-          </Panel>
-          {this.props.location.state.status === 'closed' &&
-          <Panel>
-            <h4>Result: {result}</h4>
-          </Panel>
-          }
+	    <Panel  header={'Submitted by '+submitter+' '+age+' days ago'}>
+	      <div>{this.props.location.state.proposal.description}</div>
+	    </Panel>
           </div>
-          <div style={{marginLeft:'40px'}}>
+          <div style={{marginLeft:'20px'}}>
             <ul>{optionArray}</ul>
           </div>
         </div>

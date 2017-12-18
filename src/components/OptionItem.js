@@ -35,15 +35,15 @@ export default class OptionItem extends React.Component{
       borderWidth:'2px',
       marginBottom:'10px',
       borderRadius:'7px',
-      width:'200px',
+      width:'300px',
       height:'40px'
     }
 
     return(
       <div onClick={this.handleVote} style={main} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseExit}>
         <div style={{marginLeft:'2%',display:'flex',flexDirection:'row'}}>
-          <div style={{width:'120px',display:'flex',alignItems:'center',justifyContent:'center'}}>{this.props.title}</div>
-          <div style={{width:'75px',display:'flex',borderLeftStyle:'solid',borderLeftWidth:'3px',borderLeftColor:this.props.color,alignItems:'center',
+          <div style={{width:'200px',display:'flex',alignItems:'center',justifyContent:'center'}}>{this.props.title}</div>
+          <div style={{width:'98px',display:'flex',borderLeftStyle:'solid',borderLeftWidth:'2px',borderLeftColor:this.props.color,alignItems:'center',
           justifyContent:'center'}}>{this.props.count}</div>
         </div>
       </div>
