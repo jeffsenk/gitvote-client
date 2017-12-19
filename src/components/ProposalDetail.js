@@ -28,7 +28,7 @@ export default class ProposalDetail extends React.Component{
       if(options[key] > count){
         count = options[key];
         result = key;
-      }else if(options[key] == count){
+      }else if(options[key] === count){
         result = 'Undecided';
       }
     }

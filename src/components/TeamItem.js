@@ -56,7 +56,7 @@ export default class TeamItem extends React.Component{
 	<div style={title}><Link to={{pathname:this.props.match.url+'/'+this.props.teamKey}}>
 	{this.props.name}</Link>
 	</div>
-        <div style={{marginLeft:'50%',display:'flex',flexDirection:'row'}}>
+        <div style={{marginLeft:'40%',display:'flex',flexDirection:'row'}}>
           <div>
             <Button bsStyle='success' onClick={this.handleAccept}>Accept</Button>
           </div>
