@@ -21,25 +21,29 @@ export default class AdminScreen extends React.Component{
   }
 
   handleSubmit(){
-    console.log(this.props.match.params.id,this.state.email)
-    fetch(apiServer+'/addMember',{
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-       },
-      body: JSON.stringify({
-        teamKey:this.props.match.params.id,
-        email:this.state.email
-      })
-    }).then(function(res){
-      if(!res.ok){
-        alert('Error Adding Member');
-      }else{
-         alert('User ' + this.state.email + ' invited to join group')
-         this.setState({email:''});
-      }
-    }.bind(this));
+    if(this.state.email != ''){
+      console.log(this.props.match.params.id,this.state.email)
+      fetch(apiServer+'/addMember',{
+	method: 'POST',
+	headers: {
+	  'Accept': 'application/json',
+	  'Content-Type': 'application/json',
+	 },
+	body: JSON.stringify({
+	  teamKey:this.props.match.params.id,
+	  email:this.state.email
+	})
+      }).then(function(res){
+	if(!res.ok){
+	  alert('Error Adding Member');
+	}else{
+	   alert('User ' + this.state.email + ' invited to join group')
+	   this.setState({email:''});
+	}
+      }.bind(this));
+    }else{
+      alert('Please enter email address');
+    }
   }
 
 

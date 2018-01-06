@@ -34,17 +34,17 @@ export default class ProposalItem extends React.Component{
       backgroundColor:this.state.highlight,
       display:'flex',
       flexDirection:'row',
-      height:'70px'
+      height:'90px'
     }
     const detail={
       display:'flex',
       flexDirection:'column',
       marginLeft:'2%',
-      width:'70%'
+      width:'60%'
     }
     const title={
       paddingTop:'5px',
-      height:'50%',
+      height:'60%',
       fontSize:'large'
     }
     const stats={
@@ -55,11 +55,13 @@ export default class ProposalItem extends React.Component{
       color:'gray',
     }
 
-    let age = this.calculateAge(this.props.proposal.timeStamp).toFixed(1);
+    let age = this.calculateAge(this.props.proposal.timeStamp).toFixed(0);
     let voteCount = 0;
     let status = 'open';
+    let remaining = Number(this.props.proposal.deadline) - Number(age);
     if(Number(age) > Number(this.props.proposal.deadline)){
       status = 'closed';
+      remaining = 0;
     }
     const statusStyle={
       color: status === 'open' ? 'limegreen' : 'tomato',
@@ -77,6 +79,7 @@ export default class ProposalItem extends React.Component{
           <div style={submit}>Submitted by {this.props.proposal.userName} {age} days ago</div>
         </div>
         <div style={stats}>{voteCount} Votes</div>
+        <div style={{marginLeft:'5%', paddingTop:'5px',color:'gray'}}>{remaining} days left</div>
         <div style={statusStyle}>{status}</div>
       </div>
     );

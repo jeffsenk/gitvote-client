@@ -62,35 +62,39 @@ export default class NewProposalForm extends React.Component{
     }
 
     if(this.state.title.length>0 && this.state.description.length>0){
-      fetch(apiServer+'/newProposal',{
-	method: 'POST',
-	headers: {
-	  'Accept': 'application/json',
-	  'Content-Type': 'application/json',
-	 },
-	body: JSON.stringify({
-	  title: this.state.title,
-	  description: this.state.description,
-	  criteria:this.state.criteria,
-	  quorum:this.state.quorum,
-	  quorumType:this.state.quorumType,
-	  deadline:this.state.deadline,
-	  Options:options,
-          team:this.props.match.params.id,
-          userName:this.state.userName,
-          userKey:this.state.userKey,
-	  timeStamp:Date.now()
-	})
-      }).then(function(res){
-        if(!res.ok){
-          alert('Error Submitting Proposal');
+      if(this.state.quorum>0 && this.state.deadline>0){
+	fetch(apiServer+'/newProposal',{
+	  method: 'POST',
+	  headers: {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json',
+	   },
+	  body: JSON.stringify({
+	    title: this.state.title,
+	    description: this.state.description,
+	    criteria:this.state.criteria,
+	    quorum:this.state.quorum,
+	    quorumType:this.state.quorumType,
+	    deadline:this.state.deadline,
+	    Options:options,
+	    team:this.props.match.params.id,
+	    userName:this.state.userName,
+	    userKey:this.state.userKey,
+	    timeStamp:Date.now()
+	  })
+	}).then(function(res){
+	  if(!res.ok){
+	    alert('Error Submitting Proposal');
+	  }else{
+	     this.setState({submitted:true});
+	  }
+	}.bind(this));
         }else{
-           this.setState({submitted:true});
+          alert('Participants and Deadline must be 1 or more');
         }
-      }.bind(this));
-    }else{
-      alert('Please complete Title and Description Fields');
-    }
+      }else{
+	alert('Please complete Title and Description Fields');
+      }
   }
 
   render(){

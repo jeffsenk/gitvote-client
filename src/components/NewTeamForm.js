@@ -20,23 +20,27 @@ export default class NewTeamForm extends React.Component{
     this.setState({[key]:value});
   }
   handleCreate(){
-    fetch(apiServer+'/newTeam',{
-      method: 'POST',
-      headers: {
-	'Accept': 'application/json',
-	'Content-Type': 'application/json',
-       },
-      body: JSON.stringify({
-	name:this.state.name,
-	userKey:this.props.auth.currentUser.uid
-      })
-    }).then(function(res){
-      if(!res.ok){
-	alert('Error Creating Team');
-      }else{
-	 this.setState({created:true});
-      }
-    }.bind(this));
+    if(this.state.name != ''){
+      fetch(apiServer+'/newTeam',{
+	method: 'POST',
+	headers: {
+	  'Accept': 'application/json',
+	  'Content-Type': 'application/json',
+	 },
+	body: JSON.stringify({
+	  name:this.state.name,
+	  userKey:this.props.auth.currentUser.uid
+	})
+      }).then(function(res){
+	if(!res.ok){
+	  alert('Error Creating Team');
+	}else{
+	   this.setState({created:true});
+	}
+      }.bind(this));
+    }else{
+      alert('Team name must not be blank');
+    }
   }
 
   render(){

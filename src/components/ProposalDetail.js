@@ -116,7 +116,7 @@ export default class ProposalDetail extends React.Component{
           counter=0;
         }
       }
-      age = this.calculateAge(this.state.proposal.timeStamp).toFixed(1);
+      age = this.calculateAge(this.state.proposal.timeStamp).toFixed(0);
       submitter = this.state.proposal.userName;
       if(this.props.location.state.status === 'closed'){
         result = this.calculateResult(this.state.proposal.Options);
