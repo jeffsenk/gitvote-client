@@ -123,7 +123,7 @@ export default class GroupScreen extends React.Component{
          </Navbar.Form>
         </Navbar>
         <div style={{marginLeft:'25%',width:'50%'}}>
-        <h1 style={{color:'dimgray'}}>Select A Team</h1>
+        <h1 style={{color:'dimgray'}}>Select Your Team</h1>
         <ListGroup>
           {teamArray}
         </ListGroup>

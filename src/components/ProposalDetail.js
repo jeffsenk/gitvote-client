@@ -10,8 +10,10 @@ export default class ProposalDetail extends React.Component{
     this.fetchProposal = this.fetchProposal.bind(this);
     this.calculateAge = this.calculateAge.bind(this);
     this.calculateResult = this.calculateResult.bind(this);
+    this.fetchVotes = this.fetchVotes.bind(this);
     this.state={
-      proposal:null
+      proposal:null,
+      userHasVoted:false
     }
   }
 
@@ -39,36 +41,52 @@ export default class ProposalDetail extends React.Component{
     this.fetchProposal();
   }
 
+  fetchVotes(proposal){
+    for(var vote in proposal.Votes){
+      fetch(apiServer+'/votes/'+vote).then((res)=>res.json())
+      .then((data)=>{
+        if(data.user === this.props.userKey){
+          this.setState({userHasVoted:true});
+        }
+      });
+    }
+  }
+
   fetchProposal(){
     if(this.props.location.state.proposalKey){
       fetch(apiServer+'/proposals/'+this.props.location.state.proposalKey).then((res)=>res.json())
       .then((data)=>{
 	this.setState({proposal:data});
+        this.fetchVotes(data);
       })
     }
   }
 
   handleVote(option){
     if(this.props.location.state.status === 'open'){
-    fetch(apiServer+'/newVote',{
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-       },
-      body: JSON.stringify({
-        proposal:this.props.location.state.proposalKey,
-        user:this.props.userKey,
-        option:option,
-        timeStamp:Date.now()
-      })
-    }).then(function(res){
-      if(!res.ok){
-        alert('Error Creating Team');
+      if(!this.state.userHasVoted){
+	fetch(apiServer+'/newVote',{
+	  method: 'POST',
+	  headers: {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json',
+	   },
+	  body: JSON.stringify({
+	    proposal:this.props.location.state.proposalKey,
+	    user:this.props.userKey,
+	    option:option,
+	    timeStamp:Date.now()
+	  })
+	}).then(function(res){
+	  if(!res.ok){
+	    alert('Error Creating Team');
+	  }else{
+	     this.fetchProposal()
+	  }
+	}.bind(this));
       }else{
-         this.fetchProposal()
+        alert('You have already voted on this proposal');
       }
-    }.bind(this));
     }else{
       alert('Proposal is closed for voting');
     }

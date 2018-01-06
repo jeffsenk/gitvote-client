@@ -96,10 +96,10 @@ export default class NewProposalForm extends React.Component{
   render(){
 
     const form={
-      marginLeft:'15%',
+      marginLeft:'10%',
       marginTop:'5%',
       height:'50%',
-      width:'70%'
+      width:'80%'
     }
 
     const title={
@@ -198,9 +198,10 @@ export default class NewProposalForm extends React.Component{
           </div>
           <div style={invitees}>
             <div>Options</div>
-            <ReactTags tags={this.state.tags} suggestions={this.state.suggestions} handleDelete={this.handleDelete}
-	      placeholder='Add an Option and Hit "Enter"' handleAddition={this.handleAddition} allowNew={true}
+            <ReactTags style={{width:'400px'}} tags={this.state.tags} suggestions={this.state.suggestions} handleDelete={this.handleDelete}
+	      placeholder='i.e. "Yes" and "No"' handleAddition={this.handleAddition} allowNew={true}
               autofocus={false} autoresize={false} />
+            <div style={{color:'gray',marginTop:'5px'}}>Type each option as you want it to appear, then hit "enter" after each one</div>
           </div>
         </div>
       </div>
